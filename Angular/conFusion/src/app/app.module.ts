@@ -4,6 +4,9 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material';
+import { MatGridListModule } from '@angular/material';
+import { MatListModule } from '@angular/material';
+
 
 import 'hammerjs';
 
@@ -22,6 +25,8 @@ import { MenuComponent } from './menu/menu.component';
     HttpModule,
     FlexLayoutModule,
     MatToolbarModule,
+    MatGridListModule,
+    MatListModule,
 
   ],
   providers: [],
