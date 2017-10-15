@@ -2,41 +2,41 @@
     fxLayout="row"
     fxLayout.sm="column"
     fxLayout.xs="column"
-    fxLayoutAlign.gt-md="space-around center"
+    fxLayoutAlign.gt-mat="space-around center"
     fxLayoutGap="10px"
     fxLayoutGap.xs="0">
 
   <div fxFlex="40">
     <!-- <p>Display the details of the Dish here</p> -->
-    <md-card *ngIf="dish">
-      <md-card-header>
-        <md-card-title>
+    <mat-card *ngIf="dish">
+      <mat-card-header>
+        <mat-card-title>
           <h3> {{ dish.name | uppercase}} </h3>
-        </md-card-title>
-      </md-card-header>
-      <img md-card-image src="{{dish.image}}" alt="{{dish.name}}">
-      <md-card-content>
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="{{dish.image}}" alt="{{dish.name}}">
+      <mat-card-content>
         <p> {{dish.description}}</p>
-      </md-card-content>
-      <md-card-actions>
-        <button md-button>LIKE</button>
-        <button md-button>SHARE</button>
-      </md-card-actions>
-    </md-card>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
   </div>
 
   <div fxFlex="40">
     <!-- Display list if dish is not null -->
-    <md-list *ngIf="dish">
+    <mat-list *ngIf="dish">
       <h3>Comments</h3>
       <!-- Render each comment in comments -->
-      <md-list-item *ngFor="let comment of dish.comments">
-        <p md-line>{{comment.comment}}</p>
-        <p md-line>{{comment.rating}} Stars</p>
+      <mat-list-item *ngFor="let comment of dish.comments">
+        <p mat-line>{{comment.comment}}</p>
+        <p mat-line>{{comment.rating}} Stars</p>
         <!-- Piped date to update formatting of date string -->
-        <p md-line>-- {{comment.author}} {{comment.date | date}}</p>
-      </md-list-item>
-    </md-list>
+        <p mat-line>-- {{comment.author}} {{comment.date | date}}</p>
+      </mat-list-item>
+    </mat-list>
   </div>
 
 </div>
