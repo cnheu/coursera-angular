@@ -8,6 +8,7 @@ import { MatGridListModule } from '@angular/material';
 import { MatListModule } from '@angular/material';
 import { MatCardModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material';
 
 import 'hammerjs';
 
@@ -26,6 +27,7 @@ import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     FooterComponent,
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -49,12 +52,18 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     MatListModule,
     MatCardModule,
     MatButtonModule,
+    MatDialogModule,
     AppRoutingModule,
   ],
   providers: [
     DishService,
     PromotionService,
     LeaderService,
+  ],
+  // This component is opened through code
+  // and not specific/ sub to other components
+  entryComponents: [
+    LoginComponent
   ],
   bootstrap: [AppComponent]
 })

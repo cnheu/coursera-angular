@@ -1,0 +1,15 @@
+<!-- md-dialog-title directive turns toolbar into title -->
+<mat-toolbar mat-dialog-title color="primary">
+  Login
+  <span class="flex-spacer"></span>
+  <!-- md-dialog-close directive turns button into closing button -->
+  <button mat-button mat-dialog-close>&times;</button>
+</mat-toolbar>
+
+<form novalidate>
+  <p>
+    <mat-input-container>
+      <input matInput placeholder="User Name" type="text" required>
+    </mat-input-container>
+  </p>
+</form>
