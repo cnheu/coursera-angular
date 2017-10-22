@@ -1,15 +1,30 @@
-<!-- md-dialog-title directive turns toolbar into title -->
+<!-- mat-dialog-title directive turns toolbar into title -->
 <mat-toolbar mat-dialog-title color="primary">
   Login
   <span class="flex-spacer"></span>
-  <!-- md-dialog-close directive turns button into closing button -->
+  <!-- mat-dialog-close directive turns button into closing button -->
   <button mat-button mat-dialog-close>&times;</button>
 </mat-toolbar>
 
-<form novalidate>
-  <p>
-    <mat-input-container>
-      <input matInput placeholder="User Name" type="text" required>
-    </mat-input-container>
-  </p>
+<p>{{ user | json }}</p>
+
+<!-- Mat Dialog and Mat inputs are failing -->
+<form novalidate (ngSubmit)="onSubmit()">
+
+  <mat-dialog-content>
+    <p>
+      <mat-input-container>
+        <input matInput placeholder="Username" type="text" [(ngModel)]="user.username" name="username" required>
+      </mat-input-container>
+      <mat-input-container>
+        <input matInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password" required>
+      </mat-input-container>
+      <mat-checkbox [(ngModel)]="user.remember" name="remember">Remember Me</mat-checkbox>
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button type="submit" mat-button class="background-primary text-floral-white" >Login</button>
+  </mat-dialog-actions>
 </form>

@@ -9,6 +9,13 @@ import { MatListModule } from '@angular/material';
 import { MatCardModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatDialogModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material';
+import {MatInputModule} from '@angular/material';
+import {MatCheckboxModule} from '@angular/material';
+
+
+
 
 import 'hammerjs';
 
@@ -53,6 +60,10 @@ import { LoginComponent } from './login/login.component';
     MatCardModule,
     MatButtonModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatInputModule,
+    FormsModule,
     AppRoutingModule,
   ],
   providers: [
