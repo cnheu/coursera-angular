@@ -6,10 +6,12 @@
   <button mat-button mat-dialog-close>&times;</button>
 </mat-toolbar>
 
+<!-- This is an illustration of two way data binding -->
 <p>{{ user | json }}</p>
 
 <!-- Mat Dialog and Mat inputs are failing -->
 <form novalidate (ngSubmit)="onSubmit()">
+<!-- Default HTML validation will not be used -->
 
   <mat-dialog-content>
     <p>
