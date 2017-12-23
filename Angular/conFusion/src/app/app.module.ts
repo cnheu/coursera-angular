@@ -13,6 +13,11 @@ import { FormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material';
 import {MatInputModule} from '@angular/material';
 import {MatCheckboxModule} from '@angular/material';
+import { MatSlideToggleModule } from '@angular/material';
+import { MatOptionModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material';
+
 
 
 
@@ -63,8 +68,12 @@ import { LoginComponent } from './login/login.component';
     MatFormFieldModule,
     MatCheckboxModule,
     MatInputModule,
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatOptionModule,
     FormsModule,
     AppRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [
     DishService,
