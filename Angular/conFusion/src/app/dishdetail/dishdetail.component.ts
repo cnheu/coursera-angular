@@ -29,7 +29,7 @@ export class DishdetailComponent implements OnInit {
     // the route will be /dishdetail/X
     let id = +this.route.snapshot.params['id'];
     this.dishservice.getDish(id)
-      .then(dish => this.dish = dish);
+      .subscribe(dish => this.dish = dish);
   }
 
   goBack(): void {
