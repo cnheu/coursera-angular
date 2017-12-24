@@ -28,7 +28,8 @@ export class DishdetailComponent implements OnInit {
     // fetch the id from the route parameters (i.e. the url)
     // the route will be /dishdetail/X
     let id = +this.route.snapshot.params['id'];
-    this.dish = this.dishservice.getDish(id);
+    this.dishservice.getDish(id)
+      .then(dish => this.dish = dish);
   }
 
   goBack(): void {

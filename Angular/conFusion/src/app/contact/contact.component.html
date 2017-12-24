@@ -55,10 +55,8 @@
             </mat-input-container>
             <mat-input-container class="half-width">
               <input matInput formControlName="telnum" placeholder="Telephone Number" type="tel" required>
-              <mat-error>
-                <span [hidden]="!feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched">
-                  Telephone number required.
-                </span>
+              <mat-error *ngIf="feedbackForm.get('telnum').hasError('required')
+                && feedbackForm.get('telnum').touched">Telephone required.
               </mat-error>
             </mat-input-container>
             <mat-input-container class="half-width">
