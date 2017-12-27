@@ -6,9 +6,9 @@
     fxLayoutGap="10px"
     fxLayoutGap.xs="0">
 
-  <div fxFlex="40">
+  <div fxFlex="40" *ngIf="dish">
     <!-- <p>Display the details of the Dish here</p> -->
-    <mat-card *ngIf="dish">
+    <mat-card>
       <mat-card-header>
         <mat-card-title>
           <h3> {{ dish.name | uppercase}} </h3>
@@ -19,6 +19,8 @@
         <p> {{dish.description}}</p>
       </mat-card-content>
       <mat-card-actions>
+        <!-- COME BACK HERE, doing UI buttons -->
+        <button md-button [routerLink]="['/dishdetail',prev]">
         <button md-button (click)="goBack()">BACK</button>
         <button mat-button>LIKE</button>
         <button mat-button>SHARE</button>
@@ -30,9 +32,9 @@
     </div>
   </div>
 
-  <div fxFlex="40">
+  <div fxFlex="40" *ngIf="dish">
     <!-- Display list if dish is not null -->
-    <mat-list *ngIf="dish">
+    <mat-list>
       <h3>Comments</h3>
       <!-- Render each comment in comments -->
       <mat-list-item *ngFor="let comment of dish.comments">

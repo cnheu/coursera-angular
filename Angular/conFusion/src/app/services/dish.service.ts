@@ -37,4 +37,9 @@ export class DishService {
       .delay(2000);
   }
 
+  getDishIds(): Observable<number[]>{
+    // Convert each dish in DISHES using map to a new number array of dish.id
+    return Observable.of(DISHES.map(dish => dish.id)).delay(2000);
+  }
+
 }
