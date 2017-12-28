@@ -43,6 +43,7 @@ export class DishdetailComponent implements OnInit {
       // + converts string into numeric value
       .switchMap((params: Params) => this.dishservice.getDish(+params['id']) )
       .subscribe(dish => {
+        // resetting the next and prev ids everytime the page gets updated
         this.dish = dish;
         this.setPrevNext(dish.id)
       });
