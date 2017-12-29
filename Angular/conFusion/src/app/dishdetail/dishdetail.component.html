@@ -49,6 +49,13 @@
         <p mat-line>-- {{comment.author}} {{comment.date | date}}</p>
       </mat-list-item>
     </mat-list>
+    <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+      <mat-input-container class="half-width">
+        <input matInput formControlName="name" placeholder="Name" type="text" required>
+        <mat-error *ngIf="formErrors.name">{{ formErrors.name }}
+        </mat-error>
+      </mat-input-container>
+    </form>
   </div>
 
 </div>

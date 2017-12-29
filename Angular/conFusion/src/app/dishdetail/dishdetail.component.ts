@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import 'rxjs/add/operator/switchmap';
+import { Comment } from '../shared/comment';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dishdetail',
@@ -22,10 +24,44 @@ export class DishdetailComponent implements OnInit {
   // Declare comments list
   // comments = this.dish.comments;
 
+  commentForm: FormGroup;
+  // comment: Comment;
+
+  formErrors = {
+    'name': '',
+    // 'lastname': '',
+    // 'telnum': '',
+    // 'email': ''
+  };
+
+  validationMessages = {
+    'name': {
+      'required':      'First Name is required.',
+      'minlength':     'First Name must be at least 2 characters long.',
+      'maxlength':     'FirstName cannot be more than 25 characters long.'
+    },
+    // 'lastname': {
+    //   'required':      'Last Name is required.',
+    //   'minlength':     'Last Name must be at least 2 characters long.',
+    //   'maxlength':     'Last Name cannot be more than 25 characters long.'
+    // },
+    // 'telnum': {
+    //   'required':      'Tel. number is required.',
+    //   'pattern':       'Tel. number must contain only numbers.'
+    // },
+    // 'email': {
+    //   'required':      'Email is required.',
+    //   'email':         'Email not in valid format.'
+    // },
+  };
+
   // dish value is no longer available from the dish component
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
-    private location: Location) { }
+    private location: Location,
+    private fb: FormBuilder) {
+      this.createForm();
+    }
 
   ngOnInit() {
     // fetch the id from the route parameters (i.e. the url)
@@ -47,6 +83,40 @@ export class DishdetailComponent implements OnInit {
         this.dish = dish;
         this.setPrevNext(dish.id)
       });
+  }
+
+  createForm(): void {
+    this.commentForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
+      // lastname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
+      // telnum: ['', [Validators.required, Validators.pattern] ],
+      // email: ['', [Validators.required, Validators.email] ],
+      // agree: false,
+      // contacttype: 'None',
+      // message: ''
+    });
+
+    this.commentForm.valueChanges
+      .subscribe(data => this.onValueChanged(data));
+
+    this.onValueChanged(); // (re)set form validation messages
+  }
+
+  // copypasted from contact.component.ts
+  onValueChanged(data?: any) {
+    if (!this.commentForm) { return; }
+    const form = this.commentForm;
+    for (const field in this.formErrors) {
+      // clear previous error message (if any)
+      this.formErrors[field] = '';
+      const control = form.get(field);
+      if (control && control.dirty && !control.valid) {
+        const messages = this.validationMessages[field];
+        for (const key in control.errors) {
+          this.formErrors[field] += messages[key] + ' ';
+        }
+      }
+    }
   }
 
   setPrevNext(dishId: number) {
