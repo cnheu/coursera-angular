@@ -55,7 +55,7 @@
         <mat-error *ngIf="formErrors.author">{{ formErrors.author }}
         </mat-error>
       </mat-input-container>
-      <mat-slider class="half-width">
+      <mat-slider class="half-width" thumbLabel min="1" max="5" step="1" tickInterval="1" value="5" tick>
       </mat-slider>
       <mat-input-container class="full-width">
         <input matInput formControlName="comment" placeholder="Comment" type="text" required>
