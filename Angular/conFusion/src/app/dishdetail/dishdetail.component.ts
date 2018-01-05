@@ -28,17 +28,21 @@ export class DishdetailComponent implements OnInit {
   // comment: Comment;
 
   formErrors = {
-    'name': '',
+    'author': '',
+    'comment': '',
     // 'lastname': '',
     // 'telnum': '',
     // 'email': ''
   };
 
   validationMessages = {
-    'name': {
+    'author': {
       'required':      'First Name is required.',
       'minlength':     'First Name must be at least 2 characters long.',
-      'maxlength':     'FirstName cannot be more than 25 characters long.'
+      'maxlength':     'First Name cannot be more than 25 characters long.'
+    },
+    'comment': {
+      'required':      'Comment is required.',
     },
     // 'lastname': {
     //   'required':      'Last Name is required.',
@@ -87,7 +91,8 @@ export class DishdetailComponent implements OnInit {
 
   createForm(): void {
     this.commentForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
+      author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
+      comment: ['',[Validators.required]],
       // lastname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
       // telnum: ['', [Validators.required, Validators.pattern] ],
       // email: ['', [Validators.required, Validators.email] ],

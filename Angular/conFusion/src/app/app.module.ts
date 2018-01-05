@@ -18,6 +18,8 @@ import { MatOptionModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material';
 import { MatProgressSpinnerModule } from '@angular/material';
+import { MatSliderModule } from '@angular/material/slider';
+
 
 
 
@@ -76,6 +78,7 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    MatSliderModule,
   ],
   providers: [
     DishService,
