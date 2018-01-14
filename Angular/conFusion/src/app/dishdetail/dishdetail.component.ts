@@ -30,10 +30,13 @@ export class DishdetailComponent implements OnInit {
   formErrors = {
     'author': '',
     'comment': '',
+
     // 'lastname': '',
     // 'telnum': '',
     // 'email': ''
   };
+
+
 
   validationMessages = {
     'author': {
@@ -95,6 +98,8 @@ export class DishdetailComponent implements OnInit {
     this.commentForm = this.fb.group({
       author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
       comment: ['',[Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
+      rating: 5,
+      date: '',
       // lastname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
       // telnum: ['', [Validators.required, Validators.pattern] ],
       // email: ['', [Validators.required, Validators.email] ],

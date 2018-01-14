@@ -48,6 +48,12 @@
         <!-- Piped date to update formatting of date string -->
         <p mat-line>-- {{comment.author}} {{comment.date | date}}</p>
       </mat-list-item>
+      <mat-list-item *ngIf="commentForm.valid">
+        <p mat-line>{{commentForm.value.comment}}</p>
+        <p mat-line>{{commentForm.value.rating }} Stars</p>
+        <p mat-line>-- {{commentForm.value.author}}</p>
+        <!-- <p mat-line>{{commentForm.value}} Stars</p> -->
+      </mat-list-item>
     </mat-list>
     <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
       <mat-input-container class="full-width">
