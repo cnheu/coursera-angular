@@ -59,11 +59,13 @@
       </mat-slider>
       <mat-input-container class="full-width">
         <textarea matInput formControlName="comment" placeholder="Your Comment" rows=12></textarea>
+        <mat-error *ngIf="formErrors.comment">{{ formErrors.comment }}
+        </mat-error>
       </mat-input-container>
       <!-- BUG: Need to add support for onSubmit and disabled inside the component -->
-      <!-- <button type="submit" mat-button class="background-primary text-floral-white"
-        [disabled]="feedbackForm.invalid">Submit
-      </button> -->
+      <button type="submit" mat-button class="background-primary text-floral-white"
+        [disabled]="commentForm.invalid">Submit
+      </button>
     </form>
   </div>
 
