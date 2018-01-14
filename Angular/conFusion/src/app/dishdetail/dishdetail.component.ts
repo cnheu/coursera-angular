@@ -25,7 +25,7 @@ export class DishdetailComponent implements OnInit {
   // comments = this.dish.comments;
 
   commentForm: FormGroup;
-  // comment: Comment;
+  comment: Comment;
 
   formErrors = {
     'author': '',
@@ -129,6 +129,28 @@ export class DishdetailComponent implements OnInit {
         }
       }
     }
+  }
+
+  onSubmit() {
+    // Set today's date and format it
+    var today = new Date().toDateString().slice(4);
+
+    // Add today to the form model
+    this.commentForm.value.date = today;
+    this.comment = this.commentForm.value;
+
+    // Push the form model to data model
+    this.dish.comments.push(this.comment);
+    console.log(this.dish.comments);
+
+    // Reset form model
+    // BUG: validation should only appear if it's been changed by someone
+    this.commentForm.reset({
+      author: '',
+      comment: '',
+      rating: 5,
+      date: '',
+    });
   }
 
   setPrevNext(dishId: number) {
