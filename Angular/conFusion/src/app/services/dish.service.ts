@@ -1,45 +1,45 @@
 import { Injectable } from '@angular/core';
 import { Dish } from '../shared/dish';
-import { DISHES } from '../shared/dishes';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { baseURL } from '../shared/baseurl';
+import { ProcessHTTPMsgService } from './process-httpmsg.service';
+
 import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class DishService {
 
-  constructor() { }
+  constructor(private http: Http,
+    private processHTTPMsgService: ProcessHTTPMsgService) { }
 
   // our DishService is ready to supply DISHES to any other
   // JS object that requires it in our app
   // Return a Promise instead, if correctly resolved, will be type Dish[]
   getDishes(): Observable<Dish[]> {
-    // ***** Pure Promise Implementation *****
-    // // Resolves immediately, since it's a constant, won't be the same with server
-    // return new Promise(resolve => {
-    //   // Simulate server latency with 2s delay
-    //   setTimeout(() => resolve(DISHES), 2000)
-    // });
-    return Observable.of(DISHES).delay(2000);
+      return this.http.get(baseURL + 'dishes')
+        .map(res => { return this.processHTTPMsgService.extractData(res); });
   }
 
   // Get Dish based on ID
   getDish(id: number): Observable<Dish> {
-    // shorthand for function using arrow function
-    // select 0th index since DISHES is a list
-    return Observable.of(DISHES.filter((dish) => (dish.id === id))[0])
-      .delay(2000);
+      return this.http.get(baseURL + 'dishes/' + id)
+        .map(res => { return this.processHTTPMsgService.extractData(res); });
   }
 
   // Get Dish based on featured flag
   getFeaturedDish(): Observable<Dish> {
-    return Observable.of(DISHES.filter((dish) => (dish.featured))[0])
-      .delay(2000);
+      return this.http.get(baseURL + 'dishes?featured=true')
+        .map(res => { return this.processHTTPMsgService.extractData(res)[0]; });
   }
 
   getDishIds(): Observable<number[]>{
     // Convert each dish in DISHES using map to a new number array of dish.id
-    return Observable.of(DISHES.map(dish => dish.id)).delay(2000);
+    return this.getDishes()
+      .map(dishes => { return dishes.map(dish => dish.id); });
   }
 
 }

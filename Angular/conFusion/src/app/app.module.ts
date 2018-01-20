@@ -45,6 +45,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 
 import { baseURL } from './shared/baseurl';
+import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { baseURL } from './shared/baseurl';
     DishService,
     PromotionService,
     LeaderService,
-    { provide: 'BaseURL', useValue: baseURL } 
+    {provide: 'BaseURL', useValue: baseURL},
+    ProcessHTTPMsgService,
   ],
   // This component is opened through code
   // and not specific/ sub to other components
