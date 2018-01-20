@@ -21,6 +21,7 @@ export class DishdetailComponent implements OnInit {
   dishIds: number[];
   prev: number;
   next: number;
+  errMess: string;
   // Declare comments list
   // comments = this.dish.comments;
 
@@ -81,7 +82,8 @@ export class DishdetailComponent implements OnInit {
 
     // Subscribe to a list of dishIds
     this.dishservice.getDishIds()
-      .subscribe(dishIds => this.dishIds = dishIds);
+      .subscribe(dishIds => this.dishIds = dishIds,
+      errmess => this.errMess = <any>errmess);
 
     // Whenever params observable changes, we use switchMap to conver it to id
     // then your subscribing to the change and updating dish
