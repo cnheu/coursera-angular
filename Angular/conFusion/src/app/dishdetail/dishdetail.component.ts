@@ -3,7 +3,10 @@ import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
+
 import 'rxjs/add/operator/switchmap';
+import 'rxjs/add/operator/catch';
+
 import { Comment } from '../shared/comment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
