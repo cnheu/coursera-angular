@@ -20,11 +20,6 @@ import { MatSelectModule } from '@angular/material';
 import { MatProgressSpinnerModule } from '@angular/material';
 import { MatSliderModule } from '@angular/material/slider';
 
-
-
-
-
-
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -46,6 +41,8 @@ import { LoginComponent } from './login/login.component';
 
 import { baseURL } from './shared/baseurl';
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
+import { RestangularModule, Restangular } from 'ngx-restangular';
+import { RestangularConfigFactory } from './shared/restConfig';
 
 @NgModule({
   declarations: [
@@ -81,6 +78,7 @@ import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
     AppRoutingModule,
     ReactiveFormsModule,
     MatSliderModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
   providers: [
     DishService,
