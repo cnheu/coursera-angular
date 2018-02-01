@@ -85,8 +85,7 @@ export class DishdetailComponent implements OnInit {
 
     // Subscribe to a list of dishIds
     this.dishservice.getDishIds()
-      .subscribe(dishIds => this.dishIds = dishIds,
-      errmess => this.errMess = <any>errmess);
+      .subscribe(dishIds => this.dishIds = dishIds);
 
     // Whenever params observable changes, we use switchMap to conver it to id
     // then your subscribing to the change and updating dish
@@ -97,7 +96,8 @@ export class DishdetailComponent implements OnInit {
         // resetting the next and prev ids everytime the page gets updated
         this.dish = dish;
         this.setPrevNext(dish.id)
-      });
+      },
+      errmess => this.errMess = <any>errmess);
   }
 
   createForm(): void {
