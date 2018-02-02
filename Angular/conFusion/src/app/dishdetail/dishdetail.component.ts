@@ -25,6 +25,7 @@ export class DishdetailComponent implements OnInit {
   prev: number;
   next: number;
   errMess: string;
+  dishcopy = null;
   // Declare comments list
   // comments = this.dish.comments;
 
@@ -95,6 +96,7 @@ export class DishdetailComponent implements OnInit {
       .subscribe(dish => {
         // resetting the next and prev ids everytime the page gets updated
         this.dish = dish;
+        this.dishcopy = dish;
         this.setPrevNext(dish.id)
       },
       errmess => this.errMess = <any>errmess);
@@ -146,7 +148,9 @@ export class DishdetailComponent implements OnInit {
     this.comment = this.commentForm.value;
 
     // Push the form model to data model
-    this.dish.comments.push(this.comment);
+    this.dishcopy.comments.push(this.comment);
+    this.dishcopy.save()
+      .subscribe(dish => { this.dish = dish; console.log(this.dish); });
     console.log(this.dish.comments);
 
     // Reset form model
