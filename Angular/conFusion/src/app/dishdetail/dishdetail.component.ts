@@ -9,11 +9,25 @@ import 'rxjs/add/operator/catch';
 
 import { Comment } from '../shared/comment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
-  styleUrls: ['./dishdetail.component.scss']
+  styleUrls: ['./dishdetail.component.scss'],
+  animations: [
+    trigger('visibility', [
+      state('shown', style({
+        transform: 'scale(1.0)',
+        opacity: 1
+      })),
+      state('hidden', style({
+        transform: 'scale(0.5)',
+        opacity: 0
+      })),
+      transition('* => *', animate('0.5s ease-in-out'))
+    ])
+  ]
 })
 export class DishdetailComponent implements OnInit {
   // Declare dish CONST
@@ -26,6 +40,8 @@ export class DishdetailComponent implements OnInit {
   next: number;
   errMess: string;
   dishcopy = null;
+  visibility = 'shown';
+
   // Declare comments list
   // comments = this.dish.comments;
 
@@ -35,13 +51,7 @@ export class DishdetailComponent implements OnInit {
   formErrors = {
     'author': '',
     'comment': '',
-
-    // 'lastname': '',
-    // 'telnum': '',
-    // 'email': ''
   };
-
-
 
   validationMessages = {
     'author': {
@@ -54,19 +64,6 @@ export class DishdetailComponent implements OnInit {
       'minlength':     'First Name must be at least 2 characters long.',
       'maxlength':     'First Name cannot be more than 25 characters long.'
     },
-    // 'lastname': {
-    //   'required':      'Last Name is required.',
-    //   'minlength':     'Last Name must be at least 2 characters long.',
-    //   'maxlength':     'Last Name cannot be more than 25 characters long.'
-    // },
-    // 'telnum': {
-    //   'required':      'Tel. number is required.',
-    //   'pattern':       'Tel. number must contain only numbers.'
-    // },
-    // 'email': {
-    //   'required':      'Email is required.',
-    //   'email':         'Email not in valid format.'
-    // },
   };
 
   // dish value is no longer available from the dish component
@@ -92,12 +89,16 @@ export class DishdetailComponent implements OnInit {
     // then your subscribing to the change and updating dish
     this.route.params
       // + converts string into numeric value
-      .switchMap((params: Params) => this.dishservice.getDish(+params['id']) )
+      .switchMap((params: Params) => {
+        this.visibility = 'hidden';
+        return this.dishservice.getDish(+params['id']);
+      })
       .subscribe(dish => {
         // resetting the next and prev ids everytime the page gets updated
         this.dish = dish;
         this.dishcopy = dish;
-        this.setPrevNext(dish.id)
+        this.setPrevNext(dish.id);
+        this.visibility = 'shown';
       },
       errmess => this.errMess = <any>errmess);
   }
