@@ -11,7 +11,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 export class LoginComponent implements OnInit {
 
   // define user variable, to bind template form elements to
-  user = {remember:false};
+  user = {username: '', password: '', remember: false};
 
   constructor(private dialogRef: MatDialogRef<LoginComponent>) { }
 
