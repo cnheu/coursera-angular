@@ -25,6 +25,7 @@ export class ContactComponent implements OnInit {
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
+  feedbackcopy = null;
 
   // Note form validation pattern taken from Angular Validation
   formErrors = {
