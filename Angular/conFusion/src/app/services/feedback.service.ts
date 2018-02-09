@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Feedback } from '../shared/feedback';
-// import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 import { RestangularModule, Restangular } from 'ngx-restangular';
 
@@ -10,9 +10,8 @@ export class FeedbackService {
 
   constructor(private restangular: Restangular) { }
 
-  submitFeedback(feedback: Feedback) {
+  submitFeedback(feedback: Feedback): Observable<Feedback> {
     console.log('In Feedback Service');
-    this.restangular.all('feedback').post(feedback);
-    return;
+    return this.restangular.all('feedback').post(feedback);
   }
 }

@@ -116,8 +116,15 @@ export class ContactComponent implements OnInit {
     //   };
 
     // this.feedbackservice.submitFeedback(feedbackStub);
-
-    this.feedbackservice.submitFeedback(this.feedbackForm.value);
+    var feedbackReturned;
+    this.feedbackservice.submitFeedback(this.feedbackForm.value)
+      .subscribe(feedback => {
+        feedbackReturned = feedback;
+        console.log('in the subscribed callback after .post succeeds')
+        console.log(feedbackReturned);
+      });
+    console.log('in contact at submitFeedback')
+    console.log(feedbackReturned);
     // this.feedback = this.feedbackForm.value;
     // console.log(this.feedback)
     this.feedbackForm.reset({
