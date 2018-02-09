@@ -11,23 +11,8 @@ export class FeedbackService {
   constructor(private restangular: Restangular) { }
 
   submitFeedback(feedback: Feedback) {
-    console.log('in feedback');
-    // var feedbackStub: Feedback;
-    // feedbackStub = {
-    //     firstname: 'test',
-    //     lastname: 'test',
-    //     telnum: 123,
-    //     email: 'test',
-    //     agree: true,
-    //     contacttype: 'test',
-    //     message: 'test',
-    //   };
-
-    // this.restangular.all('feedback').post(feedbackStub)
-
-
+    console.log('In Feedback Service');
     this.restangular.all('feedback').post(feedback);
-
     return;
   }
 }
