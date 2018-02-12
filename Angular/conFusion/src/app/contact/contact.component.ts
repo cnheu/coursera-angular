@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback } from '../shared/feedback';
 import { ContactType } from '../shared/feedback';
-import { flyInOut } from '../animations/app.animation';
+import { flyInOut, expand} from '../animations/app.animation';
 import { FeedbackService } from '../services/feedback.service';
 
 
@@ -16,7 +16,8 @@ import { FeedbackService } from '../services/feedback.service';
     'style': 'display: block;'
   },
   animations: [
-    flyInOut()
+    flyInOut(),
+    expand()
   ]
 })
 
@@ -28,7 +29,9 @@ export class ContactComponent implements OnInit {
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
-  feedbackcopy = null;
+  feedbackReturned = null;
+  displayFeedbackReturned = false;
+  displayFormLoading = false;
 
   // Note form validation pattern taken from Angular Validation
   formErrors = {
@@ -104,27 +107,29 @@ export class ContactComponent implements OnInit {
 
 
   onSubmit() {
-    // var feedbackStub: Feedback;
-    // feedbackStub = {
-    //     firstname: 'test',
-    //     lastname: 'test',
-    //     telnum: 123,
-    //     email: 'test',
-    //     agree: true,
-    //     contacttype: 'test',
-    //     message: 'test',
-    //   };
 
-    // this.feedbackservice.submitFeedback(feedbackStub);
-    var feedbackReturned;
+    this.displayFormLoading = true;
+    console.log(this.displayFormLoading);
+
+
     this.feedbackservice.submitFeedback(this.feedbackForm.value)
       .subscribe(feedback => {
-        feedbackReturned = feedback;
-        console.log('in the subscribed callback after .post succeeds')
-        console.log(feedbackReturned);
+        this.feedbackReturned = feedback;
+        this.displayFormLoading = false;
+        this.displayFeedbackReturned = true;
+        console.log('in the subscribed callback after .post succeeds');
+        console.log(this.displayFormLoading);
+        console.log(this.feedbackReturned.firstname);
+        setTimeout(function(){
+          this.displayFeedbackReturned = false;
+          console.log('in timeout');
+          console.log(this.displayFeedbackReturned);
+          }.bind(this), 5000);
       });
-    console.log('in contact at submitFeedback')
-    console.log(feedbackReturned);
+
+
+
+
     // this.feedback = this.feedbackForm.value;
     // console.log(this.feedback)
     this.feedbackForm.reset({
