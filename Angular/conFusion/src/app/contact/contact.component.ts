@@ -117,18 +117,15 @@ export class ContactComponent implements OnInit {
         this.feedbackReturned = feedback;
         this.displayFormLoading = false;
         this.displayFeedbackReturned = true;
-        console.log('in the subscribed callback after .post succeeds');
-        console.log(this.displayFormLoading);
-        console.log(this.feedbackReturned.firstname);
+        // console.log('in the subscribed callback after .post succeeds');
+        // console.log(this.displayFormLoading);
+        // console.log(this.feedbackReturned.firstname);
         setTimeout(function(){
           this.displayFeedbackReturned = false;
-          console.log('in timeout');
-          console.log(this.displayFeedbackReturned);
+          // console.log('in timeout');
+          // console.log(this.displayFeedbackReturned);
           }.bind(this), 5000);
       });
-
-
-
 
     // this.feedback = this.feedbackForm.value;
     // console.log(this.feedback)
